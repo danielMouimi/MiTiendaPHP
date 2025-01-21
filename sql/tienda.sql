@@ -64,3 +64,5 @@ CREATE TABLE IF NOT EXISTS lineas_pedidos(
     CONSTRAINT fk_linea_pedido FOREIGN KEY(pedido_id) REFERENCES pedidos(id),
     CONSTRAINT fk_linea_producto FOREIGN KEY(producto_id) REFERENCES productos(id)
     )ENGINE=InnoDb DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+insert into usuarios values (1,'dani','mouimi','mouimidaniel@gmail.com','$2y$05$JOupH9j3cgoMLKGZci.enO6umeyG3R8JTZ3xJQlUjJLE.0BOf4THu','admin');
