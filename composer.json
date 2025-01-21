@@ -1,0 +1,27 @@
+{
+    "name": "mouimi/mi-tienda",
+    "description": "Tienda",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Mouimi\\MiTienda\\": "src/",
+            "Controllers\\": "./src/Controllers/",
+            "Models\\": "./src/Models/",
+            "Lib\\": "./src/Lib/",
+            "Views\\": "./src/Views/",
+            "Routes\\": "./src/Routes/",
+            "Repositories\\": "./src/Repositories/",
+            "Services\\": "./src/Services/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daniel Mouimi",
+            "email": "mouimidaniel@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
