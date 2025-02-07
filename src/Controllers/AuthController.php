@@ -4,9 +4,11 @@ use Lib\Pages;
 use Models\User;
 use Services\UserService;
 use http\Exception;
+use Controllers\DashboardController;
 
 class AuthController {
     private Pages $pages;
+    private DashboardController $dashboardController;
     public function __construct() {
         $this->pages = new Pages();
         $this->userService = new UserService;
@@ -22,6 +24,7 @@ class AuthController {
 
                     try {
                         $this->userService->registrarUser($usuario);
+                        header("Location: ". BASE_URL);
                     }catch (\Exception $e) {
                         $_SESSION['register'] = "fail";
                         $_SESSION['errores'] = $e->getMessage();
@@ -57,8 +60,9 @@ class AuthController {
             $password = $data['password'];
 
             try {
-                // Llama al método loginUser del servicio para verificar credenciales
-                $isLoggedIn = $this->userService->login($email, $password);
+                // Llama al metodo loginUser del servicio para verificar credenciales
+                $this->userService->login($email, $password);
+                header("Location: ". BASE_URL);
 
             } catch (Exception $e) {
                 error_log('Error al iniciar sesión: ' . $e->getMessage());
@@ -74,7 +78,6 @@ class AuthController {
 
     public function cerrarsesion() {
         session_destroy();
-        header('Location: '.BASE_URL);
     }
 
 }

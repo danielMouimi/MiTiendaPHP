@@ -109,6 +109,11 @@
             <p>Precio: $<?= htmlspecialchars($producto['precio']) ?></p>
 
 
+            <form action="<?=BASE_URL?>addCarrito" method="post">
+                <input type="hidden" name="product_id" value="<?= $producto['id'] ?>">
+                <button type="submit">Comprar</button>
+            </form>
+
             <?php if(isset($_SESSION['user'])): ?>
             <?php if ($_SESSION['user']['rol'] == 'admin') : ?>
             <p><a href=<?=BASE_URL . "editProducto/" . htmlspecialchars($producto['id'])?>>Editar Producto</a></p>

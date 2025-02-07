@@ -46,21 +46,41 @@ class ProductoRepository
         } finally {
             if (isset($insert)) {
                 $insert->closeCursor();
-                header("location: " . BASE_URL );
+                $insert = null;
             }
         }
     }
 
     public function getProductos() {
+        try {
      $select = $this->database->prepare("SELECT * FROM productos");
      $select->execute();
      return $select->fetchAll();
+        }  catch (PDOException $e) {
+            error_log("Error al crear el usuario: " . $e->getMessage());
+            return false;
+        } finally {
+            if (isset($select)) {
+                $select->closeCursor();
+                $select = null;
+            }
+        }
     }
     public function getProducto($id) {
+        try {
         $select = $this->database->prepare("SELECT * FROM productos WHERE id = :id");
         $select->bindValue(":id", $id);
         $select->execute();
         return $select->fetchAll();
+        }  catch (PDOException $e) {
+            error_log("Error al crear el usuario: " . $e->getMessage());
+            return false;
+        } finally {
+            if (isset($select)) {
+                $select->closeCursor();
+                $select = null;
+            }
+        }
     }
 
     public function editProducto($id,$producto) {
@@ -88,7 +108,7 @@ class ProductoRepository
         } finally {
             if (isset($update)) {
                 $update->closeCursor();
-                header("location: " . BASE_URL );
+                $update = null;
             }
         }
 
@@ -107,12 +127,13 @@ class ProductoRepository
         } finally {
             if (isset($delete)) {
                 $delete->closeCursor();
-                header("location: " . BASE_URL );
+                $delete = null;
             }
         }
     }
 
     public function existe($nombre) {
+        try {
         $select = $this->database->prepare("SELECT * FROM productos WHERE nombre = :nombre");
         $select->bindValue(":nombre", $nombre);
         $select->execute();
@@ -121,13 +142,32 @@ class ProductoRepository
         }else {
             return false;
         }
+        }  catch (PDOException $e) {
+            error_log("Error al crear el usuario: " . $e->getMessage());
+            return false;
+        } finally {
+            if (isset($select)) {
+                $select->closeCursor();
+                $select = null;
+            }
+        }
     }
 
     public function getbyCategoria($categoria_id) {
+        try {
         $select = $this->database->prepare("SELECT * FROM productos WHERE categoria_id = :categoria_id");
         $select->bindValue(":categoria_id", $categoria_id);
         $select->execute();
         return $select->fetchAll();
+        }  catch (PDOException $e) {
+            error_log("Error al crear el usuario: " . $e->getMessage());
+            return false;
+        } finally {
+            if (isset($select)) {
+                $select->closeCursor();
+                $select = null;
+            }
+        }
     }
 
 

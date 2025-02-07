@@ -66,7 +66,7 @@
                 echo "<li><a href='". BASE_URL . "register'>Registrarse</a></li>";
             }
         ?>
-        <li><a href="<?=BASE_URL?>">Carrito</a></li>
+        <li><a href="<?=BASE_URL?>addCarrito">Carrito</a></li>
     </ul>
 </nav>
 <h1>Tienda</h1>

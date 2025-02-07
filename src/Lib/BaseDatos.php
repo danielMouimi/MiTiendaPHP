@@ -83,6 +83,7 @@ class BaseDatos
         }
 
         $stmt->closeCursor();
+        $stmt = null;
 
 
     }

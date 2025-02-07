@@ -8,6 +8,7 @@ class ProductoController{
     private Pages $pages;
     private ProductoService $productoService;
     private CategoriaController $categoriaController;
+    private DashboardController $dashboardController;
 
     public function __construct(){
         $this->pages = new Pages();
@@ -23,6 +24,7 @@ class ProductoController{
                 if($producto->validar()) {
 
                     $this->productoService->addProducto($producto);
+                    header("Location: ". BASE_URL);
 
                 }else {
                     $_SESSION['errores'] = Producto::getErrores();
@@ -53,6 +55,8 @@ class ProductoController{
                 $producto = Producto::fromArray($_POST['data']);
                 if($producto->validar()) {
                     $this->productoService->editProducto($id,$producto);
+                    header("Location: ". BASE_URL);
+
                 }else {
                     $_SESSION['errores'] = Producto::getErrores();
                     $this->pages->render('error/formerror',['error'=>$_SESSION['errores']]);
@@ -68,8 +72,9 @@ class ProductoController{
 
     public function deleteProducto($id){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $producto = Producto::fromArray($_POST['data']);
             $this->productoService->deleteProducto($id);
+            header("Location: ". BASE_URL);
+
         }else {
             $this->pages->render('productos/deleteProductos', ['product'=>$this->getProducto($id)]);
         }

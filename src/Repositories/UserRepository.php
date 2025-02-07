@@ -37,8 +37,7 @@ class UserRepository {
             } finally {
                 if (isset($insert)) {
                     $insert->closeCursor();
-                    header("location: " . BASE_URL );
-
+                    $insert = null;
                 }
             }
 
@@ -65,7 +64,7 @@ class UserRepository {
             } finally {
                 if (isset($query)) {
                     $query->closeCursor();
-                    header("location: " . BASE_URL );
+                    $query = null;
                 }
             }
         }

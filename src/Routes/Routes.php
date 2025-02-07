@@ -1,10 +1,12 @@
 <?php
 
 namespace Routes;
+use Controllers\CarritoController;
 use Controllers\AuthController;
 use Controllers\CategoriaController;
 use Controllers\ErrorController;
 use Controllers\ProductoController;
+use Controllers\DashboardController;
 use Lib\Router;
 use Lib\Pages;
 
@@ -14,10 +16,7 @@ class Routes {
     public static function index() {
 
         Router::add('GET','/', function() {
-            $cat = (new CategoriaController())->getCategorias();
-            $pages = new Pages();
-            $prod = (new ProductoController())->getProductos();
-            $pages->render('productos/mostrarProductos', ['productos' => $prod,'categorias' => $cat]);
+            (new DashboardController())->index();
         });
 
 
@@ -107,6 +106,14 @@ class Routes {
 
         Router::add('POST', '/deleteCategoria/:id', function ($id) {
             (new CategoriaController())->deleteCategoria($id);
+        });
+
+        Router::add('GET','/addCarrito', function () {
+            (new CarritoController())->addCarrito();
+        });
+
+        Router::add('POST','/addCarrito', function () {
+            (new CarritoController())->addCarrito();
         });
 
 
