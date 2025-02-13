@@ -78,6 +78,7 @@ class AuthController {
 
     public function cerrarsesion() {
         session_destroy();
+        header("Location: ". BASE_URL);
     }
 
 }

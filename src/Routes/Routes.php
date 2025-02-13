@@ -116,6 +116,18 @@ class Routes {
             (new CarritoController())->addCarrito();
         });
 
+        Router::add('GET', 'deleteCarrito/:id', function ($id) {
+            (new CarritoController())->deleteCarrito($id);
+        });
+
+        Router::add('GET', 'deleteCarritoAll/:id', function ($id) {
+            (new CarritoController())->deleteCarritoAll($id);
+        });
+
+        Router::add('GET', 'sumarCarrito/:id', function ($id) {
+            (new CarritoController())->sumarCarrito($id);
+        });
+
 
 
 
